@@ -25,6 +25,15 @@ config/
 pages/
 README.md
 index.php
+## Roadmap
+
+### Próximas melhorias
+
+- Categorias de tarefas
+- Prioridade de execução
+- Pesquisa de tarefas
+- Dashboard com gráficos
+- Modo escuro
 
 ## Autor
 
