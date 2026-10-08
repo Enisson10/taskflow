@@ -18,17 +18,11 @@ CSS3
 PDO
 Estrutura
 config/
-
 pages/
-
 assets/
-
 README.md
-
 index.php
-
 logout.php
-
 Roadmap
 Próximas melhorias
 Categorias de tarefas
