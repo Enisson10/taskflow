@@ -44,7 +44,23 @@ Nova tarefa
 Status:
 <?= $task['status']; ?>
 </p>
+<p>
+complete_task.php?id=<?= $task['id']; ?>
+Concluir
+</a>
+</p>
 
+<p>
+edit_task.php?id=<?= $task['id']; ?>
+Editar
+</a>
+</p>
+
+<p>
+delete_task.php?id=<?= $task['id']; ?>
+Excluir
+</a>
+</p>
 </div>
 
 <hr>
