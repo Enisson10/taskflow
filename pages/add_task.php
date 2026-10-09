@@ -3,15 +3,16 @@ session_start();
 
 require '../config/database.php';
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $title = $_POST['title'];
     $description = $_POST['description'];
+    $priority = $_POST['priority'];
 
     $sql = $pdo->prepare(
         "INSERT INTO tasks
-        (user_id,title,description)
-        VALUES(?,?,?)"
+        (user_id, title, description)
+        VALUES (?, ?, ?)"
     );
 
     $sql->execute([
@@ -29,22 +30,32 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <form method="POST">
 
-<input
-type="text"
-name="title"
-placeholder="Título">
+    <input
+        type="text"
+        name="title"
+        placeholder="Título"
+        required>
 
-<br><br>
+    <br><br>
 
-<textarea
-name="description"
-placeholder="Descrição">
-</textarea>
+    <textarea
+        name="description"
+        placeholder="Descrição"></textarea>
 
-<br><br>
+    <br><br>
 
-<button>
-Salvar
-</button>
+    <label>Prioridade:</label>
+
+    <select name="priority">
+        <option value="baixa">Baixa</option>
+        <option value="media">Média</option>
+        <option value="alta">Alta</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+        Salvar
+    </button>
 
 </form>
