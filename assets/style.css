@@ -43,4 +43,24 @@ hr{
 h3{
     color:#222;
 }
-``
+header{
+    background:#0d6efd;
+    color:white;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
+}
+
+footer{
+    margin-top:30px;
+    text-align:center;
+    color:#777;
+}
+
+a{
+    text-decoration:none;
+}
+
+button{
+    cursor:pointer;
+}
