@@ -64,3 +64,17 @@ a{
 button{
     cursor:pointer;
 }
+.priority-high{
+    color:#dc3545;
+    font-weight:bold;
+}
+
+.priority-medium{
+    color:#fd7e14;
+    font-weight:bold;
+}
+
+.priority-low{
+    color:#198754;
+    font-weight:bold;
+}
