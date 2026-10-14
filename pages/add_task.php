@@ -9,17 +9,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = $_POST['description'];
     $priority = $_POST['priority'];
 
-    $sql = $pdo->prepare(
-        "INSERT INTO tasks
-        (user_id, title, description)
-        VALUES (?, ?, ?)"
-    );
+   $sql = $pdo->prepare(
+    "INSERT INTO tasks
+    (user_id, title, description, priority)
+    VALUES (?, ?, ?, ?)"
+);
 
-    $sql->execute([
-        $_SESSION['user'],
-        $title,
-        $description
-    ]);
+$sql->execute([
+    $_SESSION['user'],
+    $title,
+    $description,
+    $priority
+]);
 
     header("Location: dashboard.php");
     exit;
