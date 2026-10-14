@@ -65,12 +65,22 @@ $tasks = $sql->fetchAll();
 <div class="container">
 
     <div class="header">
-        <h1>📋 TaskFlow</h1>
 
-        <a href="add_task.php" class="btn">
+    <h1>📋 TaskFlow</h1>
+
+    <div>
+
+        add_task.php
             Nova Tarefa
         </a>
+
+        <a href="logout.php" class="btn" style="background:#dc2626;">
+            Sair
+        </a>
+
     </div>
+
+</div>
 
     <h2>Minhas Tarefas</h2>
 
