@@ -42,3 +42,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 >
     <button type="submit">Entrar</button>
 </form>
+<p>
+    <a href="register.php">
+        Criar conta
+    </a>
+</p>
