@@ -44,6 +44,7 @@ $tasks = $sql->fetchAll();
             padding:10px 15px;
             text-decoration:none;
             border-radius:5px;
+            margin-left:10px;
         }
 
         .card{
@@ -66,21 +67,21 @@ $tasks = $sql->fetchAll();
 
     <div class="header">
 
-    <h1>📋 TaskFlow</h1>
+        <h1>📋 TaskFlow</h1>
 
-    <div>
+        <div>
 
-        add_task.php
-            Nova Tarefa
-        </a>
+            <a href="add_task.php" class="btn">
+                Nova Tarefa
+            </a>
 
-        <a href="logout.php" class="btn" style="background:#dc2626;">
-            Sair
-        </a>
+            <a href="../logout.php" class="btn" style="background:#dc2626;">
+                Sair
+            </a>
+
+        </div>
 
     </div>
-
-</div>
 
     <h2>Minhas Tarefas</h2>
 
@@ -96,9 +97,14 @@ $tasks = $sql->fetchAll();
                 <?= htmlspecialchars($task['description']) ?>
             </p>
 
+            <p>
+                <strong>Prioridade:</strong>
+                <?= htmlspecialchars($task['priority']) ?>
+            </p>
+
             <span class="status">
                 Status:
-                <?= $task['status'] ?>
+                <?= htmlspecialchars($task['status']) ?>
             </span>
 
         </div>
@@ -109,3 +115,4 @@ $tasks = $sql->fetchAll();
 
 </body>
 </html>
+``
