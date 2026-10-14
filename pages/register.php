@@ -61,5 +61,7 @@ Cadastrar
 </form>
 
 <p>
-login.phpJá tenho conta</a>
+    <a href="login.php">
+        Já tenho conta
+    </a>
 </p>
