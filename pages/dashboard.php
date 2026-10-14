@@ -1,123 +1,101 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user'])) {
+if(!isset($_SESSION['user'])){
     header("Location: login.php");
     exit;
 }
 
-require '../config/database.php';
+require_once("../config/database.php");
 
-$sql = $pdo->prepare("
-    SELECT * FROM tasks
-    WHERE user_id=?
-    ORDER BY id DESC
-");
-
-$sql->execute([
-    $_SESSION['user']
-]);
-
+$sql = $pdo->prepare("SELECT * FROM tasks WHERE user_id=?");
+$sql->execute([$_SESSION['user']]);
 $tasks = $sql->fetchAll();
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Dashboard - TaskFlow</title>
-    ../assets/style.css
+    <title>TaskFlow Dashboard</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f4f4;
+            margin:0;
+            padding:20px;
+        }
+
+        .container{
+            max-width:1000px;
+            margin:auto;
+        }
+
+        .header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:20px;
+        }
+
+        .btn{
+            background:#2563eb;
+            color:white;
+            padding:10px 15px;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
+        .card{
+            background:white;
+            padding:15px;
+            margin-bottom:10px;
+            border-radius:8px;
+            box-shadow:0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .status{
+            font-size:12px;
+            color:gray;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Minhas Tarefas</h1>
+<div class="container">
 
-<p>
-    add_task.php➕ Nova tarefa</a> |
-    profile.php👤 Perfil</a> |
-    ../logout.php🚪 Sair</a>
-</p>
+    <div class="header">
+        <h1>📋 TaskFlow</h1>
 
-<hr>
+        <a href="add_task.php" class="btn">
+            Nova Tarefa
+        </a>
+    </div>
 
-<?php if (count($tasks) > 0): ?>
+    <h2>Minhas Tarefas</h2>
 
-    <ul>
+    <?php foreach($tasks as $task): ?>
 
-    <?php foreach ($tasks as $task): ?>
-
-        <li>
+        <div class="card">
 
             <h3>
-                <?php echo htmlspecialchars($task['title']); ?>
+                <?= htmlspecialchars($task['title']) ?>
             </h3>
 
             <p>
-                <?php echo htmlspecialchars($task['description']); ?>
+                <?= htmlspecialchars($task['description']) ?>
             </p>
 
-            <p>
-                <strong>Status:</strong>
+            <span class="status">
+                Status:
+                <?= $task['status'] ?>
+            </span>
 
-                <?php if ($task['status'] == 'concluida'): ?>
-                    ✅ Concluída
-                <?php else: ?>
-                    ⏳ Pendente
-                <?php endif; ?>
-            </p>
-
-            <p>
-                <strong>Prioridade:</strong>
-
-                <?php if ($task['priority'] == 'alta'): ?>
-
-                    <span style="color:red;">
-                        🔴 Alta
-                    </span>
-
-                <?php elseif ($task['priority'] == 'media'): ?>
-
-                    <span style="color:orange;">
-                        🟠 Média
-                    </span>
-
-                <?php else: ?>
-
-                    <span style="color:green;">
-                        🟢 Baixa
-                    </span>
-
-                <?php endif; ?>
-
-            </p>
-
-            <p>
-                complete_task.php?id=<?php echo $task['id']; ?>
-                    Concluir
-                </a>
-                |
-                edit_task.php?id=<?php echo $task['id']; ?>
-                    Editar
-                </a>
-                |
-                delete_task.php?id=<?php echo $task['id']; ?>
-                    Excluir
-                </a>
-            </p>
-
-            <hr>
-
-        </li>
+        </div>
 
     <?php endforeach; ?>
 
-    </ul>
-
-<?php else: ?>
-
-    <p>Nenhuma tarefa cadastrada.</p>
-
-<?php endif; ?>
+</div>
 
 </body>
 </html>
