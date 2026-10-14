@@ -47,12 +47,40 @@ $tasks = $sql->fetchAll();
             margin-left:10px;
         }
 
+        .btn-green{
+            background:#16a34a;
+            color:white;
+            padding:8px 12px;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
+        .btn-yellow{
+            background:#ca8a04;
+            color:white;
+            padding:8px 12px;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
+        .btn-red{
+            background:#dc2626;
+            color:white;
+            padding:8px 12px;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
         .card{
             background:white;
             padding:15px;
             margin-bottom:10px;
             border-radius:8px;
             box-shadow:0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .actions{
+            margin-top:15px;
         }
 
         .status{
@@ -73,6 +101,10 @@ $tasks = $sql->fetchAll();
 
             <a href="add_task.php" class="btn">
                 Nova Tarefa
+            </a>
+
+            <a href="profile.php" class="btn">
+                Perfil
             </a>
 
             <a href="../logout.php" class="btn" style="background:#dc2626;">
@@ -102,10 +134,35 @@ $tasks = $sql->fetchAll();
                 <?= htmlspecialchars($task['priority']) ?>
             </p>
 
-            <span class="status">
-                Status:
+            <p>
+                <strong>Status:</strong>
                 <?= htmlspecialchars($task['status']) ?>
-            </span>
+            </p>
+
+            <div class="actions">
+
+                <a
+                    href="edit_task.php?id=<?= $task['id'] ?>"
+                    class="btn-yellow"
+                >
+                    Editar
+                </a>
+
+                <a
+                    href="complete_task.php?id=<?= $task['id'] ?>"
+                    class="btn-green"
+                >
+                    Concluir
+                </a>
+
+                <a
+                    href="delete_task.php?id=<?= $task['id'] ?>"
+                    class="btn-red"
+                >
+                    Excluir
+                </a>
+
+            </div>
 
         </div>
 
@@ -115,4 +172,3 @@ $tasks = $sql->fetchAll();
 
 </body>
 </html>
-``
