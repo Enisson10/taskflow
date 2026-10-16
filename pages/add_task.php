@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if(!isset($_SESSION['user'])){
+    header("Location: login.php");
+    exit;
+}
+
 require '../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
