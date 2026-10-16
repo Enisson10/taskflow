@@ -32,14 +32,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $update = $pdo->prepare(
         "UPDATE tasks
          SET title=?, description=?, priority=?
-         WHERE id=?"
+         WHERE id=? AND user_id=?"
     );
 
     $update->execute([
         $title,
         $description,
         $priority,
-        $id
+        $id,
+        $_SESSION['user']
     ]);
 
     header("Location: dashboard.php");
